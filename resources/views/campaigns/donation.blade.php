@@ -26,7 +26,7 @@
                             </strong>
                             terkumpul dari Rp {{ number_format($donation->target_amount, 2, ',' , '.') }}
                         </span>
-                        <button class="btn"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                        <a href="https://wa.me/?text=Temen-temen%20kita%20patungan%20yuk%20di%20sini%20{{$url}}" class="btn fa fa-share-alt" aria-hidden="true" ></a>
                     </div>
 
                     <div class="progress mb-3">

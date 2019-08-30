@@ -10,11 +10,22 @@ use Illuminate\Http\Request;
 
 use App\Campaign;
 use App\CampaignItem;
+use App\Item;
 
 use Auth;
 
 class CampaignItemController extends BaseController
 {
+    public function index(){
+        $items = Item::all();
+        $campaign = session()->get('campaign');
+        $label = $campaign->campaign_type == 'wishlist' ?
+            'Pilih produk untuk dimasukkan ke wishlist: ' . $campaign->title . " mu"
+            : 'Pilih produk mitra yang dibutuhkan untuk kampanye donasi: ' . $campaign->title . " mu";
+
+        return view('campaigns.campaign-item', ['items' => $items, 'label' => $label, 'type' => $campaign->campaign_type]);
+    }
+
     public function create(Request $request){
         $user_id = 1;
         $campaign_items = $request->input('campaign_items');
@@ -41,5 +52,24 @@ class CampaignItemController extends BaseController
         return response()->json([
             $campaign_items
         ], 200);
+    }
+
+    public function addItemToCampaign(Request $request, $campaignId, $itemId)
+    {
+        $ci = CampaignItem::create([
+            'description' => 'dummy',
+            'quantity' => 1,
+            'campaign_id' => $campaignId,
+            'item_id' => $itemId,
+            'percentage' => 0
+        ]);
+
+        return response()->json($ci);
+    }
+
+    public function finishAddingItemToCampaign($type)
+    {
+        session()->forget("campaign");
+        return redirect("/")->with('success', 'Succesfully created ' . $type);
     }
 }
