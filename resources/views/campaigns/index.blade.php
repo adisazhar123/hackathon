@@ -233,7 +233,7 @@
             console.log(donation);
 
             $.ajax({
-               url: `/payment/contribution`,
+               url: `/contribution`,
                method: 'POST',
                data: donation,
                 success: function(data) {
