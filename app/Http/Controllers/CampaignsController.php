@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Contribution;
 use Illuminate\Http\Request;
+use Illuminate\Routing\UrlGenerator;
+
+
 use Auth;
 
 class CampaignsController extends Controller
@@ -22,7 +25,6 @@ class CampaignsController extends Controller
         $wishlists = Campaign::active()
             ->wishlist()
             ->get();
-
         return view('campaigns.index', ['donations' => $donations, 'wishlists' => $wishlists]);
     }
 
@@ -33,7 +35,12 @@ class CampaignsController extends Controller
             ->items()
             ->first();
 
-        return view('campaigns.donation', ['donation' => $donation]);
+        $contributors = Contribution::where('campaigns_id', $id)->get();
+
+
+        $url = url()->current();
+    
+        return view('campaigns.donation', ['donation' => $donation, 'url' => $url, 'messages' => $contributors]);
     }
 
     public function showWishlist($id)
@@ -42,6 +49,8 @@ class CampaignsController extends Controller
             ->wishlist()
             ->items()
             ->first();
+        
+        $url = url()->current();
 
         $totalPrice = 0;
         foreach ($wishlist->items as $campaignItem)
@@ -56,6 +65,8 @@ class CampaignsController extends Controller
             $totalPrice -= $c->amount;
         }
 
-        return view('campaigns.wishlist', ['wishlist' => $wishlist, 'totalPrice' => $totalPrice]);
+        $messages = $contributors;
+
+        return view('campaigns.wishlist', ['wishlist' => $wishlist, 'totalPrice' => $totalPrice, 'url' => $url, 'messages' => $messages]);
     }
 }

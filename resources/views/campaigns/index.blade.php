@@ -72,7 +72,7 @@
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-warning">Bantuan Sosial</span>
-                                            <span class="badge badge-pill badge-primary">Category X</span><br>
+{{--                                            <span class="badge badge-pill badge-primary">Category X</span><br>--}}
                                         </div>
                                         <span>
                                         <strong>
@@ -81,7 +81,7 @@
                                             terkumpul dari Rp {{ number_format($donation->target_amount, 2, ',' , '.') }}
                                         </span>
                                         <div class="progress">
-                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                            <div data-toggle="tooltip" data-placement="top" title="{{$donation->fulfillment_percentage . "%"}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$donation->fulfillment_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$donation->fulfillment_percentage . "%"}}"></div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -121,11 +121,17 @@
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-success">Wishlist</span>
-                                            <span class="badge badge-pill badge-primary">Category X</span><br>
+{{--                                            <span class="badge badge-pill badge-primary">Category X</span><br>--}}
                                         </div>
 {{--                                        <div class="progress">--}}
 {{--                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>--}}
 {{--                                        </div>--}}
+                                        <div class="progress">
+                                            @php
+                                                $percentage_value = $donation->fulfillment_percentage * 100;
+                                            @endphp
+                                            <div data-toggle="tooltip" data-placement="top" title="{{$percentage_value}}%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percentage_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_value}}%"></div>
+                                        </div>
                                     </div>
                                     <div class="card-footer">
                                         <button class="btn btn-info btn-raised donate" campaign-id="{{$wishlist->id}}">Lihat Barangku</button>
@@ -181,6 +187,10 @@
 
 @section('script')
     <script>
+
+        @if(Session::has('success'))
+            swal("Hebat!", '{{Session::get('success')}}', "success");
+        @endif
 
         let donation = {
           amount: '', campaign_id: '', message: ''
@@ -280,7 +290,7 @@
             console.log(donation);
 
             $.ajax({
-               url: `/payment/contribution`,
+               url: `/contribution`,
                method: 'POST',
                data: donation,
                 success: function(data) {
@@ -290,6 +300,14 @@
                    donation.amount = '';
                    donation.message = '';
                    donation.campaign_id = '';
+
+                    $(".donation.modal-donate").modal('hide');
+
+                    swal("Hebat!", 'Berhasil berdonasi!', "success");
+
+                    setInterval(function () {
+                        location.reload();
+                    }, 1500);
 
                 },
                 error: function (data) {

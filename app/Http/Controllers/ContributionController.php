@@ -7,6 +7,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 use App\Contribution;
 use App\Campaign;
@@ -20,7 +21,9 @@ class ContributionController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::id();
+        $contributors = Contribution::where('users_id', $id)->get();
+        return response()->json($contributors);
     }
 
     /**
@@ -42,20 +45,6 @@ class ContributionController extends Controller
     public function store(Request $request)
     {
         $payment = new Contribution;
-
-//        $validator = Validator::make($request->all(), [
-//            'amount' => 'required',
-//            'user_id' => 'required',
-//            'campaign_id' => 'required',
-//        ]);
-         
-//        if ($validator->fails()) {
-//            $output = [
-//                'message' => 'Your input is doesnt valid'
-//            ];
-//              return redirect()->back()->withInput();
-//             return response()->json($output);
-//        }
         
         $payment->message = (empty($request->message)) ? '' : $request->message;
         $payment->amount = $request->amount;
@@ -66,7 +55,12 @@ class ContributionController extends Controller
         $amount = Contribution::where('campaigns_id', $request->campaign_id)->sum('amount');
 
         $campaign = Campaign::find($request->campaign_id);
-        $campaign->update(['fulfillment_percentage' => ($amount / $campaign->target_amount) * 100 ]);
+        $percentage = ($amount / $campaign->target_amount) * 100;
+        $campaign->update(['fulfillment_percentage' =>  $percentage]);
+
+        if ($percentage >= 100) {
+            $campaign->update(['status' => 'inactive']);
+        }
 
         return response()->json($payment);
     }
@@ -121,5 +115,10 @@ class ContributionController extends Controller
         $contribution->update(['campaign_item_id'=> $ci->id]);
 
         return redirect()->back()->with('success', 'Berhasil membeli barang wishlist!');
+    }
+
+    public function getMessage($id)
+    {
+        return Contribution::where('id', $id)->with('user')->first();
     }
 }
