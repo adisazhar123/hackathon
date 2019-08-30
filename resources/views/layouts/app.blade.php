@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
 
-                <a class="navbar-brand" href="/">{{$title}}</a>
+                <a class="navbar-brand" href="/">{{empty($title) ? 'Profilku' : $title}}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -40,6 +40,15 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/profile">Profil Ku</a>
+                                @if (Auth::check())
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @endif
                             </div>
                         </li>
                     </ul>
@@ -47,8 +56,9 @@
             </div>
         </nav>
 
-
-
+        <main class="py-4">
+            @yield('content')
+        </main>
         @yield('body')
 
 
