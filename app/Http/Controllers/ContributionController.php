@@ -48,7 +48,7 @@ class ContributionController extends Controller
         
         $payment->message = (empty($request->message)) ? '' : $request->message;
         $payment->amount = $request->amount;
-        $payment->users_id = 1; //TODO: Change User Id
+        $payment->users_id = request()->user()->id;
         $payment->campaigns_id = $request->campaign_id;
         $payment->save();
 
@@ -75,7 +75,7 @@ class ContributionController extends Controller
         Contribution::create([
             'message' => $request->message,
             'amount' => $amount,
-            'users_id' => 1, //TODO: Change User Id,
+            'users_id' => request()->user()->id,
             'campaigns_id' => $request->campaign_id
         ]);
 
@@ -93,7 +93,7 @@ class ContributionController extends Controller
         $contribution = Contribution::create([
             'message' => $request->message,
             'amount' => $request->amount,
-            'users_id' => 1, //TODO: Change User Id,
+            'users_id' => request()->user()->id,
             'campaigns_id' => $request->campaign_id,
         ]);
 

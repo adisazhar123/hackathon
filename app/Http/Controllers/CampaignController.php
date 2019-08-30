@@ -28,9 +28,7 @@ class CampaignController extends BaseController
     }
 
     public function create(Request $request){
-
-//        TODO: Change user_id
-        $user_id =  1;
+        $user_id =  request()->user()->id;
         $campaign_type = $request->input('campaign_type');
         if (empty($request->input('campaign_type'))) {
             if ($request->input('campaign_type') == 'wishlist') {
