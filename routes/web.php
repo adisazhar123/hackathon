@@ -16,4 +16,8 @@ Route::get('/', function () {
 });
 
 Route::post('/create_campaign','CampaignController@create');
-Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
+Route::get('/campaign/type/{campaign_type}', 'CampaignController@getCampaignByType');
+Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
+Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContributorId');
+Route::get('/campaign/campaigner/{id}', 'CampaignController@getCampaignByCampaignerId');
+Route::post('/campaign/update/', 'CampaignController@update');
