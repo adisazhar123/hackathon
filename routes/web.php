@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/campaign/create','CampaignController@index');
+Route::post('/create_campaign','CampaignController@create');
 Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
 
 // Route::get('/', 'CampaignsController@index');

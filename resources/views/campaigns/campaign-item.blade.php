@@ -18,36 +18,32 @@
             <div class="create-campaign-header">
                 <div class="title">
                     <h1>
-                        Buat Donasi
+                        Pilih Item
                     </h1>
                 </div>
             </div>
 
-            <form method= "post" action= "../create_campaign" accept-charset="UTF-8">
+            <form method="get" action= "{{action(CampaignController@create)}}" accept-charset="UTF-8">
             <div class="form-group">
                 <label for="inputTitle" class="bmd-label-floating">Judul</label>
-                <input name="title" class="form-control" id="inputTitle">
+                <input class="form-control" id="inputTitle">
                 <span class="bmd-help">Isi dengan judul kampanye donasimu</span>
             </div>
             <div class="form-group">
                 <label for="inputDescription" class="bmd-label-floating">Deskripsi</label>
-                <textarea name="description" class="form-control" id="inputDescription" rows="3"></textarea>
+                <textarea class="form-control" id="inputDescription" rows="3"></textarea>
                 <span class="bmd-help">Jelaska lebih lanjut mengenai kegiatan donasimu seperti tujuan, target, lokasi kegiatan, dan sebagainya</span>
             </div>
             <div class="form-group">
                 <label for="inputDeadline" class="bmd-label-floating">Batas waktu</label>
-                <input name="deadline" class="form-control" id="inputDeadline" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+                <input class="form-control" id="inputDeadline" onfocus="(this.type='date')" onfocusout="(this.type='text')">
                 <span class="bmd-help">Isi dengan batas terakhir waktu penerimaan donasi</span>
             </div>
             <div class="form-group">
                 <label for="inputBannerImage" class="bmd-label-floating">Gambar</label>
-                <input name="banner_path" class="form-control" id="inputBannerImage">
+                <input class="form-control" id="inputBannerImage">
                 <span class="bmd-help">isi dengan url gambar yang sesuai dengan jenis kegiatan donasimu</span>
             </div>
-            <input type="hidden" id="typeCampaign" name="campaign_type" value="donation">
-            <input type="hidden" id="status" name="status" value="active">
-            <input type="hidden" id="users_id" name="custId" value="{{Auth::user()->id}}">
-
 
             <button class="btn btn-default">Cancel</button>
             <button type="submit" class="btn btn-primary btn-raised">Next</button>

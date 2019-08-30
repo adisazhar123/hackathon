@@ -17,7 +17,7 @@ class CampaignController extends BaseController
 {
     public function __construct()
     {
-        view()->share('title', 'Buat donasi');
+        view()->share('title', 'Patungan Kuy');
     }
 
     public function index()
