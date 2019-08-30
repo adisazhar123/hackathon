@@ -12,8 +12,8 @@
 */
 
 Route::get('/', 'CampaignsController@index');
-Route::get('/campaigns/{id}', 'CampaignsController@show');
-
+Route::get('/donations', 'CampaignsController@showDonation');
+Route::get('/wishlists', 'CampaignsController@showWishlist');
 
 Route::get('/profile', 'ProfilesController@index');
 

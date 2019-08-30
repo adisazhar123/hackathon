@@ -17,8 +17,13 @@ class CampaignsController extends Controller
         return view('campaigns.index');
     }
 
-    public function show($id)
+    public function showDonation()
     {
         return view('campaigns.donation');
+    }
+
+    public function showWishlist()
+    {
+        return view('campaigns.wishlist');
     }
 }
