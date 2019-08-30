@@ -31,8 +31,12 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/campaign/create">Buat Donasi <span class="sr-only">(current)</span></a>
+                        </li>
                     </ul>
 
+                       
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown ml-auto">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

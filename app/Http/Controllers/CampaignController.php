@@ -15,6 +15,16 @@ use Auth;
 
 class CampaignController extends BaseController
 {
+    public function __construct()
+    {
+        view()->share('title', 'Buat donasi');
+    }
+
+    public function index()
+    {
+        return view('campaigns.create');
+    }
+
     public function create(Request $request){
         $user_id =  1;
         $campaign_type = $request->input('campaign_type');

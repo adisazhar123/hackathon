@@ -39,8 +39,9 @@
                     </div>
                     <br><br>
 
-
                     <button class="btn btn-warning btn-raised">Belikan Semua</button>
+                    <a href="https://wa.me/?text=Temen-temen%20kita%20patungan%20yuk%20di%20sini%20{{$url}}" class="btn fa fa-share-alt" aria-hidden="true" ></a>
+
                 </div>
             </div>
 
