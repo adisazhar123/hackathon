@@ -17,8 +17,9 @@ class CreateCampaignItemsTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->integer('quantity');
-            $table->unsignedInteger('campaigns_id');
-            $table->unsignedInteger('items_id');
+            $table->float('percentage');
+            $table->unsignedInteger('campaign_id');
+            $table->unsignedInteger('item_id');
             $table->timestamps();
         });
     }

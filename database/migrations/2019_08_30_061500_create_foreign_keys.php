@@ -20,11 +20,11 @@ class CreateForeignKeys extends Migration
         });
 
         Schema::table('campaign_item', function (Blueprint $table) {
-           $table->foreign('campaigns_id')
+           $table->foreign('campaign_id')
                ->references('id')
                ->on('campaigns');
 
-           $table->foreign('items_id')
+           $table->foreign('item_id')
                ->references('id')
                ->on('items');
         });
