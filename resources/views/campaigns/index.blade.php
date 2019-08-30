@@ -30,14 +30,6 @@
             cursor: pointer;
         }
 
-        .badge-buy {
-            margin-left: 30px;
-        }
-        
-        .badge-buy:hover {
-            cursor: pointer;
-            background-color: #ff5719;
-        }
     </style>
 @endsection
 
@@ -45,10 +37,13 @@
     <div id="body">
         <div class="campaigns">
             <div class="container">
-                <div class="donations-title">
-                    <h1>Donasi Terkini</h1>
+                <div class="card-header">
+                    <div class="donations-title">
+                        <h1>Donasi Terkini</h1>
+                    </div>
+
                 </div>
-                <div class="donations">
+                <div class="donations mb-5">
                     <div class="row">
                         @foreach($donations as $donation)
                             <div class="col-md-4">
@@ -72,7 +67,6 @@
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-warning">Bantuan Sosial</span>
-{{--                                            <span class="badge badge-pill badge-primary">Category X</span><br>--}}
                                         </div>
                                         <span>
                                         <strong>
@@ -96,9 +90,12 @@
             </div>
 
             <div class="container">
-                <div class="wishlist-title">
-                    <h1>Wishlist Terkini</h1>
+                <div class="card-header">
+                    <div class="wishlist-title">
+                        <h1>Wishlist Terkini</h1>
+                    </div>
                 </div>
+
                 <div class="wishlists">
                     <div class="row">
                         @foreach($wishlists as $wishlist)
@@ -121,16 +118,6 @@
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-success">Wishlist</span>
-{{--                                            <span class="badge badge-pill badge-primary">Category X</span><br>--}}
-                                        </div>
-{{--                                        <div class="progress">--}}
-{{--                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>--}}
-{{--                                        </div>--}}
-                                        <div class="progress">
-                                            @php
-                                                $percentage_value = $donation->fulfillment_percentage * 100;
-                                            @endphp
-                                            <div data-toggle="tooltip" data-placement="top" title="{{$percentage_value}}%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percentage_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_value}}%"></div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
