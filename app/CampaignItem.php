@@ -12,6 +12,11 @@ class CampaignItem extends Model
         'description',
         'quantity',
         'campaigns_id',
-        'items_id'
+        'items_id',
+        'fulfillment_percentage'
     ];
+
+    public function campaign() {
+        return $this->belongsTo('App\Campaign', 'campaigns_id');
+    }
 }

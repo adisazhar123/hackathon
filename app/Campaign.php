@@ -19,4 +19,16 @@ class Campaign extends Model
         'status',
         'users_id'
     ];
+
+    public function items() {
+        return $this->hasMany('App\CampaignItem', 'campaigns_id');
+    }
+
+    public function contributes() {
+        return $this->hasMany('App\Contribution', 'campaigns_id');
+    }
+
+    public function user() {
+        return $this->hasOne('App\User', 'id', 'users_id');
+    }
 }

@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/create_campaign','CampaignController@create');
+// Route::get('/', 'CampaignsController@index');
+Route::get('/campaign/type/{campaign_type}', 'CampaignController@getCampaignByType');
+Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
+Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContributorId');
+Route::get('/campaign/campaigner/{id}', 'CampaignController@getCampaignByCampaignerId');
+Route::post('/campaign/update/', 'CampaignController@update');
+
+// Route::post('/payment/contribution', 'ContributionController@store');
+// middleware('auth')->
+Route::post('/payment/contribution', 'ContributionController@store');
+Route::get('/profile', 'ProfilesController@index');
