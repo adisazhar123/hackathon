@@ -30,13 +30,16 @@
                     </div>
 
                     <div class="progress mb-3">
-                        <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                        @php
+                            $percent = $donation->fulfillment_percentage * 100;
+                        @endphp
+                        <div data-toggle="tooltip" data-placement="top" title="{{$percent}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent.'%'}}"></div>
                     </div>
 
                     <div class="progress-info">
                         <div class="left" style="float: left">
                             <h6>
-                                {{$donation->contributors->count()}}
+                                Jumlah donatur: <strong>{{$donation->contributors->count()}}</strong>
                             </h6>
                         </div>
                         <div class="right" style="float: right">
@@ -181,7 +184,7 @@
             console.log(donation);
 
             $.ajax({
-                url: `/payment/contribution`,
+                url: `/contribution`,
                 method: 'POST',
                 data: donation,
                 success: function(data) {
