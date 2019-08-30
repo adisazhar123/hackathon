@@ -14,9 +14,7 @@
 Route::get('/', 'CampaignsController@index');
 Route::get('/donations/{id}', 'CampaignsController@showDonation');
 Route::get('/wishlists/{id}', 'CampaignsController@showWishlist');
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 

@@ -25,6 +25,10 @@
             text-decoration: none;
             /*color: #000000 !important;*/
         }
+
+        .prices:hover {
+            cursor: pointer;
+        }
     </style>
 @endsection
 
@@ -124,10 +128,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A asperiores commodi, consequatur ducimus error est ex fugiat harum illum minus optio, qui repellat voluptas! Culpa ea fuga maxime recusandae rerum?</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, consequatur cumque cupiditate distinctio eius, enim illo incidunt iure minima nam numquam officiis similique tempore tenetur ullam velit veniam voluptate voluptatem!
-                    </p>
+                    <div class="prices">
+                        <span class="badge badge-pill badge-info">Rp 10.000,00</span>
+                        <span class="badge badge-pill badge-info">Rp 50.000,00</span>
+                        <span class="badge badge-pill badge-info">Rp 100.000,00</span>
+                        <span class="badge badge-pill badge-info other">Lain-lain</span>
+                    </div>
+                    <p>Anda akan memberi</p>
+                    <input type="amount" class="form-control"> <br>
+                    <button class="btn btn-success btn-raised">Berikan Donasi Sekarang</button>
                 </div>
             </div>
         </div>
@@ -159,6 +168,10 @@
         $(".wishlist .btn.donate").click(function () {
             $(".wishlist.modal-donate").modal('show');
         });
+
+        $(".prices .badge-pill").click(function () {
+            $(this).css('')
+        })
     </script>
 @endsection
 
