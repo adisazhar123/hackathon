@@ -122,6 +122,76 @@ Battery 	 	Non-removable Li-Po 4000 mAh battery',
             'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/4/20/5158575/5158575_59df2fb5-6903-42fc-8ea1-d30bc6c17402_1280_1280.jpeg'
         ]);
 
+        Item::create([
+            'id' => 103,
+            'title' => 'Kaos New Balance original dryfit quickdry not salomon hokka one UA',
+            'description' => 'Kaos new balance core run tee
+            New
+            Original 100%
+            
+            Size M L XL
+            Uk luar/US
+            M. Lebar 50cm/ panjang 69cm ( SOLD OUT)
+            L. Lebar 55cm/ panjang 72cm
+            Xl. Lebar 60cm/ panjang 76cm ( sold out)
+            Sisa L ajah
+            Kalo mau Motif lain ada size lain ada di lapak saya yg lain cek ya ',
+            'item_url' => 'https://www.tokopedia.com/selamatpagi/kaos-new-balance-original-dryfit-quickdry-not-salomon-hokka-one-ua?trkid=f=Ca0000L000P0W0S0Sh00Co0Po0Fr0Cb0_src=other-product_page=1_ob=32_q=_po=1_catid=1486&whid=0&src=other',
+            'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/attachment/2018/7/24/153245026942720/153245026942720_ddf7dd75-5c06-4420-ab6b-3eca5ae77b73.png',
+            'price' => 130000
+        ]);
+
+        Item::create([
+            'id' => 104,
+            'title' => 'new balance running quickdry original not 2XU salomon under armour',
+            'description' => 'Tolong tidak ditanyakan yg sudah dijelaskan diketerangan.. baca sampe selese
+            terimaksih..
+            
+            New balance 7in 2in1 short
+            New balance running/outdoor
+            Bahan quickdry/dryfit cepat kering
+            Ringan/ultralight
+            Adem nyaman dan melar/elastis
+            Celana ada daleman/inner sesui gambar
+            
+            New 100% with tag polybag
+            Original 100% garansi uangkmbali tidak sesui
+            
+            Stoknya
+            SISA MERAH S M L
+            hitam/ black HABIS/SOLD OUT
+            
+            
+            Size chart kolor ( diukur diameter belum melar)
+            S 68cm
+            M 77cm
+            L 81cm ',
+            'item_url' => 'https://www.tokopedia.com/selamatpagi/new-balance-running-quickdry-original-not-2xu-salomon-under-armour?trkid=f=Ca0000L000P0W0S0Sh00Co0Po0Fr0Cb0_src=other-product_page=1_ob=32_q=_po=2_catid=1486&whid=0&src=other',
+            'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/product-1/2017/6/9/618595/618595_065193d4-c977-41fb-b44b-27cabfb8a887.jpg',
+            'price' => 120000
+        ]);
+
+        Item::create([
+            'id' => 105,
+            'title' => 'Fork rockshox boxxer WC worldcup 27.5 650b not fox float 40 summum v10',
+            'description' => 'Fork rockshox boxxer WC
+            World cup air
+            650b / 27.5”
+            Travel 200mm
+            Kondisi bekas sangat normal 100%
+            Sudah upgrade sealdust black original rockshox
+            Top crown sudah yang flat/pendek tidak seperti bawaan yang cenderung tinggi ( lumayan mahal kalo beli terpisah) tidak perlu upgrade apalagi service “sudah siap pancal hehe..
+            
+            Kndisi mulus lecet wajar pemakaian...
+            fork rawatan tidak asal pakai ya hehe..
+            bekas pemakaian saya sendiri (aman sehat)
+            no minus
+            Semua lengkap dan fungsi normal 100% dijamin',
+            'item_url' => 'https://www.tokopedia.com/selamatpagi/fork-rockshox-boxxer-wc-worldcup-27-5-650b-not-fox-float-40-summum-v10',
+            'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/attachment/2019/7/16/156328472102787/156328472102787_bcc33500-4299-4135-b7be-3ee00afcf40b.png',
+            'price' => 9980000
+        ]);
+
         $campaignType = ["donation", "wishlist"];
         $usersId = [1, 2, 3];
 
