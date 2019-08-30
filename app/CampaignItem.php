@@ -13,7 +13,7 @@ class CampaignItem extends Model
         'quantity',
         'campaigns_id',
         'items_id',
-        'percentage'
+        'fulfillment_percentage'
     ];
 
     public function campaign() {
