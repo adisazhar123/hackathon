@@ -18,17 +18,36 @@ class CampaignController extends BaseController
     public function create(Request $request){
         $user_id =  1;
         $campaign_type = $request->input('campaign_type');
+        if (empty($request->input('campaign_type'))) {
+            if ($request->input('campaign_type') == 'wishlist') {
+                $deadline = date('Y-m-d h:i:s', time());
+            } else {
+                return Redirect::back()->withErrors(['msg', 'Deadline required']);
+            }
+        } else $deadline = $request->input('deadline'); 
+        $shortlink = $request->input('shortlink');
+
+        $target_amount = $request->input('target_amount');
+        if (is_numeric($target_amount)) {
+            if ($target_amount < 0) {
+                return Redirect::back()->withErrors(['msg', 'Target amount must greater than 0']);
+            }
+        } else {
+            return Redirect::back()->withErrors(['msg', 'Target amount must be numeric']);
+        }
+
+        if (empty($shortlink)) $shortlink = '';
 
         $campaign = Campaign::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'deadline' => $request->input('deadline'),
+            'deadline' => $deadline,
             'banner_path' => $request->input('banner_path'),
             'fulfillment_percentage' => 0,
-            'shortlink' => $request->input('shortlink'),
+            'shortlink' => $shortlink,
             'campaign_type' => $request->input('campaign_type'),
-            'target_amount' => $request->input('target_amount'),
-            'status' => $request->input('status'),
+            'target_amount' => $target_amount,
+            'status' => 'active',
             'users_id' => $user_id
         ]);
         
@@ -50,6 +69,16 @@ class CampaignController extends BaseController
         return response()->json([
             $campaign
         ], 200);
+    }
+
+    public function create_wishlist_page() {
+        $type = 'wishlist';
+        return view('campaigns.create', compact('type'));
+    }
+
+    public function create_campaign_page() {
+        $type = 'campaign';
+        return view('campaigns.create', compact('type'));
     }
 
     public function getCampaignByType($campaign_type){
