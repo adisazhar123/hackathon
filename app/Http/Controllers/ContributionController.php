@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 use App\Contribution;
 use App\Campaign;
@@ -18,7 +19,9 @@ class ContributionController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::id();
+        $contributors = Contribution::where('users_id', $id)->get();
+        return response()->json($contributors);
     }
 
     /**
@@ -77,7 +80,8 @@ class ContributionController extends Controller
      */
     public function show($id)
     {
-        //
+        $contributors = Contribution::find($id);
+        return response()->json($contributors);
     }
 
     /**

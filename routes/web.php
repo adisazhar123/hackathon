@@ -28,5 +28,5 @@ Route::post('/campaign/update/', 'CampaignController@update');
 
 // Route::post('/payment/contribution', 'ContributionController@store');
 // middleware('auth')->
-Route::post('/payment/contribution', 'ContributionController@store');
+Route::resource('/contribution', 'ContributionController');
 Route::get('/profile', 'ProfilesController@index');

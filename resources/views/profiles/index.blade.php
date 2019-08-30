@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="profile-points">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i> {{$contributions}}
                                     </div>
                                     <div class="profile-info">
                                         <p><strong>Nama:</strong> Nama Orang</p>
@@ -65,11 +65,11 @@
                                     </h4>
                                             <table style="height: 100px;">
                                                 <tbody>
-                                                @foreach([1,2,3] as $wish)
+                                                @foreach($wishlist as $wish)
                                                     <tr class="wishlist-row mr-2">
                                                         <td class="align-middle"><i style="margin-right: 20px" class="fa fa-gratipay wish-icon" aria-hidden="true"></i></td>
                                                         <td>
-                                                            <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deserunt distinctio inventore minima quis totam ullam vel, vero! Ad alias explicabo, fugiat illo labore quam quibusdam repellendus sequi suscipit tempora.</a>
+                                                            <a href="#">{{$wish->title}}</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -84,11 +84,11 @@
                                         </h4>
                                         <table style="height: 100px;">
                                             <tbody>
-                                            @foreach([1,2,3] as $donation)
+                                            @foreach($donations as $donation)
                                                 <tr class="donation-row mr-2">
                                                     <td class="align-middle"><i style="margin-right: 20px" class="fa fa-medkit donation-icon" aria-hidden="true"></i></td>
                                                     <td>
-                                                        <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deserunt distinctio inventore minima quis totam ullam vel, vero! Ad alias explicabo, fugiat illo labore quam quibusdam repellendus sequi suscipit tempora.</a>
+                                                        <a href="#">{{$donation->title}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
