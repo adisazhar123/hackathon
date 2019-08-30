@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create_campaign','CampaignController@create');
 Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
+// Route::post('/payment/contribution', 'ContributionController@store');
+
+Route::middleware('auth')->post('/payment/contribution', 'ContributionController@store');
