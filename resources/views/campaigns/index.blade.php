@@ -37,23 +37,25 @@
                 </div>
                 <div class="donations">
                     <div class="row">
-                        @foreach([1, 2, 3, 4, 5] as $donation)
+                        @foreach($donations as $donation)
                             <div class="col-md-4">
-                                <div class="card donation mb-2">
-                                    <img src="https://images-na.ssl-images-amazon.com/images/I/610JhsyZV1L._SX355_.jpg" alt="">
-                                    <span class="badge badge-secondary requester-name">Nama Requester</span>
+                                <div class="card donation mb-2 h-100">
+                                    <img src="{{$donation->banner_path}}" alt="" height="250px">
+                                    <span class="badge badge-secondary requester-name">{{$donation->user->name}}</span>
                                     <div class="card-header campaign-title">
-                                        <a href="#">
+                                        <a href="/donations/{{$donation->id}}">
                                             <h5>
                                                 <strong>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                    {{\Illuminate\Support\Str::limit($donation->title, 50)}}
                                                 </strong>
                                             </h5>
                                         </a>
                                     </div>
                                     <div class="card-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolorem dolores eligendi esse expedita id illum minima, nulla numquam, porro, quaerat quas quasi qui quia quis similique veniam voluptas voluptatem!
+                                            {{
+                                            \Illuminate\Support\Str::limit($donation->description, 200)
+                                            }}
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-warning">Bantuan Sosial</span>
@@ -80,23 +82,23 @@
                 </div>
                 <div class="wishlists">
                     <div class="row">
-                        @foreach([1, 2, 3, 4, 5] as $wishlist)
+                        @foreach($wishlists as $wishlist)
                             <div class="col-md-4">
-                                <div class="card wishlist mb-2">
-                                    <img src="https://images-na.ssl-images-amazon.com/images/I/610JhsyZV1L._SX355_.jpg" alt="">
-                                    <span class="badge badge-secondary requester-name">Nama Requester</span>
+                                <div class="card wishlist h-100 mb-2">
+                                    <img src="{{$wishlist->banner_path}}" alt="" height="250px">
+                                    <span class="badge badge-secondary requester-name">{{$wishlist->user->name}}</span>
                                     <div class="card-header campaign-title">
-                                        <a href="#">
+                                        <a href="/wishlists/{{$wishlist->id}}">
                                             <h5>
                                                 <strong>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                    {{\Illuminate\Support\Str::limit($wishlist->title, 50)}}
                                                 </strong>
                                             </h5>
                                         </a>
                                     </div>
                                     <div class="card-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolorem dolores eligendi esse expedita id illum minima, nulla numquam, porro, quaerat quas quasi qui quia quis similique veniam voluptas voluptatem!
+                                            {{\Illuminate\Support\Str::limit($wishlist->description, 200)}}
                                         </p>
                                         <div class="campaign-labels">
                                             <span class="badge badge-pill badge-success">Wishlist</span>

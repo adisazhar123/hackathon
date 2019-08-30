@@ -12,7 +12,8 @@ class Item extends Model
         'title',
         'description',
         'item_url',
-        'price'
+        'price',
+        'image_path'
     ];
 
 }

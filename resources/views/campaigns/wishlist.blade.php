@@ -16,19 +16,19 @@
         <div class="container">
             <div class="wishlist-header">
                 <div class="title">
-                    <h1>Wishlist Ulang Tahun
+                    <h1>Wishlist {{$wishlist->title}}
                     </h1>
                 </div>
             </div>
 
             <div class="card mb-2">
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci aut autem corporis deleniti earum esse et ex facilis fugiat impedit laborum mollitia nam nesciunt porro, possimus recusandae. Beatae, quae.</p>
+                    <p>{{$wishlist->description}}</p>
 
                     <div class="progress-info">
                         <div class="left" style="float: left">
                             <h6>
-                                300 donasi
+                                {{$wishlist->contributors->count()}} donasi
                             </h6>
                         </div>
                         <div class="right" style="float: right">
@@ -45,26 +45,30 @@
             </div>
 
             <div class="row">
-                @foreach([1,2,3] as $item)
+                @foreach($wishlist->items as $campaignItem)
+
+                @if($campaignItem->percentage != 100.00)
                 <div class="col-md-3">
-                    <div class="card item mb-2">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/610JhsyZV1L._SX355_.jpg" alt="">
-                        <span class="badge badge-secondary requester-name">Nama Requester</span>
+                    <div class="card item h-100 mb-2">
+                        <img src="{{$campaignItem->item->image_path}}" alt="" height="200px">
                         <div class="card-header campaign-title">
-                            <a href="#">
-                                <h5>
+                            <a href="{{$campaignItem->item->item_url}}" target="_blank">
+                            <h5>
                                     <strong>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        {{$campaignItem->item->title}}
                                     </strong>
                                 </h5>
                             </a>
                         </div>
                         <div class="card-body">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolorem dolores eligendi esse expedita id illum minima, nulla numquam, porro, quaerat quas quasi qui quia quis similique veniam voluptas voluptatem!
+                                {{$campaignItem->description}}
+                            </p>
+                            <p>
+                                Rp {{$campaignItem->contributors->sum('amount')}} terkumpul dari Rp 3.405.463,00
                             </p>
                             <div class="progress">
-                                <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                <div data-toggle="tooltip" data-placement="top" title="{{ ( $campaignItem->contributors->sum('amount') / $campaignItem->item->price ) * 100}}%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ ( $campaignItem->contributors->sum('amount') / $campaignItem->item->price ) * 100}}" aria-valuemin="0" aria-valuemax="100" style="width:{{ ( $campaignItem->contributors->sum('amount') / $campaignItem->item->price ) * 100}}%"></div>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -72,34 +76,35 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @else
+                        <div class="col-md-3">
+                            <div class="card item mb-2">
+                                <img src="{{$campaignItem->item->image_path}}" alt="" height="200px">
+                                <div class="card-header campaign-title">
+                                    <a href="{{$campaignItem->item->item_url}}" target="_blank">
+                                        <h5>
+                                            <strong>
+                                                {{$campaignItem->item->title}}
+                                            </strong>
+                                        </h5>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        {{$campaignItem->description}}
+                                    </p>
+                                    <div class="progress">
+                                        <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-success btn-raised donate">Produk Sudah Debelikan</button>
 
-                    <div class="col-md-3">
-                        <div class="card item mb-2">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/610JhsyZV1L._SX355_.jpg" alt="">
-                            <span class="badge badge-secondary requester-name">Nama Requester</span>
-                            <div class="card-header campaign-title">
-                                <a href="#">
-                                    <h5>
-                                        <strong>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        </strong>
-                                    </h5>
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dolorem dolores eligendi esse expedita id illum minima, nulla numquam, porro, quaerat quas quasi qui quia quis similique veniam voluptas voluptatem!
-                                </p>
-                                <div class="progress">
-                                    <div data-toggle="tooltip" data-placement="top" title="100%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button class="btn btn-success btn-raised donate">Produk Sudah Debelikan</button>
-                            </div>
                         </div>
-                    </div>
+                @endif
+                @endforeach
 
             </div>
 

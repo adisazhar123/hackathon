@@ -12,6 +12,15 @@ class Contribution extends Model
         'message',
         'amount',
         'users_id',
-        'campaigns_id'
+        'campaigns_id',
+        'campaign_item_id'
     ];
+
+    public function user() {
+        return $this->hasOne('App\User', 'users_id');
+    }
+
+    public function campaign() {
+        return $this->belongsTo('App\Campaign', 'campaigns_id');
+    }
 }

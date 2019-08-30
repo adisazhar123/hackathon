@@ -12,20 +12,21 @@
     <div id="body">
         <div class="container">
             <div class="card">
-                <img class="card-img-top" src="https://media4.s-nbcnews.com/j/newscms/2018_49/2669406/181204-japan-tsunami-earthquake-cs-920a_075a953d76eb5447a6bf4fd422e45244.fit-760w.jpg" alt="">
+                <img class="card-img-top" src="{{$donation->banner_path}}" alt="">
                 <div class="card-body">
                     <div class="donation-header mb-3">
                         <h4>
                             <strong>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorum fugit ipsum iusto maxime, mollitia.
+                                {{$donation->title}}
                             </strong>
                         </h4>
                         <span>
                             <strong>
                                 Rp 2443.453.225
                             </strong>
-                            terkumpul dari Rp 300.000.000
+                            terkumpul dari Rp {{ number_format($donation->target_amount, 2, ',' , '.') }}
                         </span>
+                        <button class="btn"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
                     </div>
 
                     <div class="progress mb-3">
@@ -60,19 +61,19 @@
 
             <div class="card donation-items mt-2 mb-2">
                 <div class="card-body">
-                    @foreach([1,2,3] as $item)
+                    @foreach($donation->items as $item)
                         <div class="item">
                             <div class="row">
                                 <div class="col-md-8">
                                     <h5>
                                         <strong>
-                                            Indomie Mie Goreng
+                                            {{$item->item->title}}
                                         </strong>
                                     </h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur hic impedit ipsam ipsum magni necessitatibus nulla placeat porro quis quod saepe vel, voluptas. Eligendi et minima molestiae nemo ratione?</p>
+                                    <p>{{$item->description}}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    x 5 @ Rp 500 000
+                                    x {{$item->quantity}} @ Rp {{ number_format( $item->item->price, 2, ',' , '.')}}
                                 </div>
                             </div>
                             <hr>
