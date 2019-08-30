@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CampaignsController@index');
+Route::get('/donations/{id}', 'CampaignsController@showDonation');
+Route::get('/wishlists/{id}', 'CampaignsController@showWishlist');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create_campaign','CampaignController@create');
+Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
 // Route::get('/', 'CampaignsController@index');
 Route::get('/campaign/type/{campaign_type}', 'CampaignController@getCampaignByType');
 Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
