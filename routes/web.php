@@ -21,5 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create_campaign','CampaignController@create');
 Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
 // Route::post('/payment/contribution', 'ContributionController@store');
+// middleware('auth')->
+Route::post('/payment/contribution', 'ContributionController@store');
+Route::get('/', 'CampaignsController@index');
+Route::get('/campaigns/{id}', 'CampaignsController@show');
 
-Route::middleware('auth')->post('/payment/contribution', 'ContributionController@store');
+
+Route::get('/profile', 'ProfilesController@index');
+
