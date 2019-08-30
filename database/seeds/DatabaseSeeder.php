@@ -192,6 +192,33 @@ Battery 	 	Non-removable Li-Po 4000 mAh battery',
             'price' => 9980000
         ]);
 
+        Item::create([
+            'id' => 106,
+            'title' => 'Selimut Bulu Domba Original Super Tebal 2 Warna 180x200 - Ungu Tua',
+            'description' => 'Barang Dan Warna Ready Stock 
+            Uk 180 x 200 cm
+            Berat 1 .6 kg
+            Packing Rapi
+            Tanpa Tas
+            Tanpa Tali
+            Tersedia Warna Warna Cantik
+            
+            Selimut bulu domba super tebal import original halus dan lembut
+            Bulu tidak rontok saat dicuci dan dipakai',
+            'item_url' => 'https://www.tokopedia.com/clouvyshop/selimut-bulu-domba-original-super-tebal-2-warna-180x200-ungu-tua?src=topads',
+            'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/product-1/2019/7/27/39438381/39438381_a7e55d52-17b7-4770-a6ee-7324a30068c7_700_700',
+            'price' => 140000
+        ]);
+
+        Item::create([
+            'id' => 107,
+            'title' => 'INDOMIE MIE GORENG 1 DUS',
+            'description' => 'untuk kebutuhan orang di sana',
+            'item_url' => 'https://www.tokopedia.com/importproduk/indomie-mie-goreng-1-dus?src=topads',
+            'image_path' => 'https://ecs7.tokopedia.net/img/cache/700/attachment/2019/6/29/156174264541448/156174264541448_dbdf3ee4-36f5-483b-a6cd-9212d4d9ca10.png',
+            'price' => 89900
+        ]);
+
         $campaignType = ["donation", "wishlist"];
         $usersId = [1, 2, 3];
 
