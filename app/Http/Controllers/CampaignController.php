@@ -47,19 +47,15 @@ class CampaignController extends BaseController
     }
 
     public function getCampaignById($id){
-        $campaign = Campaign::find($id);
-
-        return response()->json([
-            $campaign
-        ]);
+        $campaign = Campaign::with(['user', 'items', 'contributes'])->find($id);
+        return response()->json($campaign);
     }
 
     public function getCampaignByContributorId($contributor_id){
-        $campaign = Campaign::where('users_id', $user_id)
+        $campaign = Campaign::where('users_id', $contributor_id)
+                    ->with(['items', 'user'])
                     ->get();
-        return response()->json([
-            $campaign
-        ]);
+        return response()->json($campaign);
     }
 
     public function update(Request $request){

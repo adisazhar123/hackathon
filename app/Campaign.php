@@ -21,14 +21,14 @@ class Campaign extends Model
     ];
 
     public function items() {
-        return $this->hasMay('App\CampaignItem', 'campaigns_id');
+        return $this->hasMany('App\CampaignItem', 'campaigns_id');
     }
 
-    public function contibutes() {
-        return $this->hasMay('App\Contribution', 'campaigns_id');
+    public function contributes() {
+        return $this->hasMany('App\Contribution', 'campaigns_id');
     }
 
     public function user() {
-        return $this->hasOne('App\User', 'users_id');
+        return $this->hasOne('App\User', 'id', 'users_id');
     }
 }
