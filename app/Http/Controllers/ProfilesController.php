@@ -32,6 +32,10 @@ class ProfilesController extends Controller
 
     public function show($id)
     {
+        $user = User::find($id);
+        if ($user == null) {
+            abort(404);
+        }
         $wishlist = Campaign::where([
             ['users_id', '=', $id],
             ['campaign_type', '=', 'wishlist']
@@ -40,7 +44,6 @@ class ProfilesController extends Controller
             ['users_id', '=', $id],
             ['campaign_type', '=', 'donation']
         ])->get();
-        $user = User::find($id);
         $contributions = DB::table('contributions')->count(DB::raw('DISTINCT campaigns_id'));
         return view('profiles.index', compact('wishlist', 'donations', 'contributions', 'user'));
     }

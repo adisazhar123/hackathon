@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create_campaign','CampaignController@create');
 Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
 // Route::get('/', 'CampaignsController@index');
+Route::get('/wishlist/create','CampaignController@create_wishlist_page');
+Route::get('/campaign/create','CampaignController@create_campaign_page');
 Route::get('/campaign/type/{campaign_type}', 'CampaignController@getCampaignByType');
 Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
 Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContributorId');
