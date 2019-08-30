@@ -19,7 +19,7 @@ class CreateContributionsTable extends Migration
             $table->float('amount', 10, 2);
             $table->unsignedInteger('users_id');
             $table->unsignedInteger('campaigns_id');
-            $table->unsignedInteger('campaign_item_id');
+            $table->unsignedInteger('campaign_item_id')->default(null)->nullable();
             $table->timestamps();
         });
     }
