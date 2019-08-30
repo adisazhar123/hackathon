@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 use App\Contribution;
+use App\Campaign;
 
 class ContributionController extends Controller
 {
@@ -35,7 +39,34 @@ class ContributionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = new Contribution;
+
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required',
+            'user_id' => 'required',
+            'campaign_id' => 'required',
+        ]);
+         
+        if ($validator->fails()) {
+            $output = [
+                'message' => 'Your input is doesnt valid'
+            ];
+            //  return redirect()->back()->withInput();
+             return response()->json($output);
+        }
+        
+        $payment->message = (empty($request->message)) ? '' : $request->message;
+        $payment->amount = $request->amount;
+        $payment->users_id = $request->user_id;
+        $payment->campaigns_id = $request->campaign_id;
+        $payment->save();
+
+        Campaign::where('id', $request->campaign_id)
+            ->update([
+                'fulfillment_percentage' => DB::raw("fulfillment_percentage + ($request->amount/target_amount)")
+            ]);
+
+        return response()->json($payment);
     }
 
     /**
