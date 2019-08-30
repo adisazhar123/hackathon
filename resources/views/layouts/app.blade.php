@@ -28,9 +28,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        @php
+                            $isCurrentPathIsLogin = Request::is('login');
+                            $isCurrentPathIsRegister = Request::is('register');
+                            $isCurrentPathIsHome = Request::is('/');
+                        @endphp
+                        <li class="nav-item {{$isCurrentPathIsHome ? 'active' : ''}}">
+                            <a class="nav-link" href="/">Home</a>
                         </li>
+                        @if (!Auth::check())
+                        <li class="nav-item {{$isCurrentPathIsLogin ? 'active' : ''}}">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>                            
+                        </li>
+                        <li class="nav-item {{$isCurrentPathIsRegister ? 'active' : ''}}">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>                            
+                        </li>
+                        @endif
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
