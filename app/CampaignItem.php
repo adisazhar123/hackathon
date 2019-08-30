@@ -12,6 +12,7 @@ class CampaignItem extends Model
         'description',
         'quantity',
         'campaigns_id',
-        'items_id'
+        'items_id',
+        'percentage'
     ];
 }

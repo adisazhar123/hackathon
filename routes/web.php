@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/create_campaign','CampaignController@create');
+Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByType');
