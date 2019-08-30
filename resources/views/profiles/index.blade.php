@@ -58,25 +58,29 @@
 
                             <div class="col-md-8">
                                 <div class="profile-right">
+
+                                @if(count($wishlist) > 0)
                                     <div class="wishlists">
                                     <h4>
                                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                             Wishlist Ku
                                     </h4>
-                                            <table style="height: 100px;">
-                                                <tbody>
-                                                @foreach($wishlist as $wish)
-                                                    <tr class="wishlist-row mr-2">
-                                                        <td class="align-middle"><i style="margin-right: 20px" class="fa fa-gratipay wish-icon" aria-hidden="true"></i></td>
-                                                        <td>
-                                                            <a href="#">{{$wish->title}}</a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
+                                        <table style="height: 100px;">
+                                            <tbody>
+                                            @foreach($wishlist as $wish)
+                                                <tr class="wishlist-row mr-2">
+                                                    <td class="align-middle"><i style="margin-right: 20px" class="fa fa-gratipay wish-icon" aria-hidden="true"></i></td>
+                                                    <td>
+                                                        <a href="#">{{$wish->title}}</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-
+                                @endif
+                                
+                                @if(count($donations) > 0)
                                     <div class="donations">
                                         <h4>
                                             <i class="fa fa-handshake-o" aria-hidden="true"></i>
@@ -95,6 +99,7 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                @endif
                                 </div>
                             </div>
                         </div>
