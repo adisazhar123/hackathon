@@ -14,4 +14,12 @@ class Contribution extends Model
         'users_id',
         'campaigns_id'
     ];
+
+    public function user() {
+        return $this->hasOne('App\User', 'users_id');
+    }
+
+    public function campaign() {
+        return $this->belongsTo('App\Campaign', 'campaigns_id');
+    }
 }
