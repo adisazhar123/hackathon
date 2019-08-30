@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CampaignsController@index');
+Route::get('/campaigns/{id}', 'CampaignsController@show');
+
+
+Route::get('/profile', 'ProfilesController@index');
+
