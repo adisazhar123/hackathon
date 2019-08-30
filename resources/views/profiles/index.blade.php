@@ -51,7 +51,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i> {{$contributions}}
                                     </div>
                                     <div class="profile-info">
-                                        <p><strong>Nama:</strong> Nama Orang</p>
+                                        <p><strong>Nama:</strong> {{$user->name}}</p>
                                     </div>
                                 </div>
                             </div>

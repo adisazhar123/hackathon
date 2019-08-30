@@ -29,6 +29,6 @@ Route::post('/campaign/update/', 'CampaignController@update');
 // Route::post('/payment/contribution', 'ContributionController@store');
 // middleware('auth')->
 Route::resource('/contribution', 'ContributionController');
-Route::get('/profile', 'ProfilesController@index');
+Route::resource('/profile', 'ProfilesController');
 Route::post('/campaign_item','CampaignItemController@create');
 Route::get('/campaign_item', 'CampaignItemController@getCampaignItems');
