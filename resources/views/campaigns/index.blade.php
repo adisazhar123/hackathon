@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-info btn-raised donate">Bantu Sekarang</button>
+                                        <button class="btn btn-info btn-raised donate" target-amount="{{$donation->target_amount}}" campaign-id="{{$donation->id}}">Bantu Sekarang</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-info btn-raised donate">Lihat Lebih Lanjut</button>
+                                        <button class="btn btn-info btn-raised donate" campaign-id="{{$wishlist->id}}">Lihat Lebih Lanjut</button>
                                     </div>
                                 </div>
                             </div>
@@ -129,14 +129,18 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="prices">
-                        <span class="badge badge-pill badge-info">Rp 10.000,00</span>
-                        <span class="badge badge-pill badge-info">Rp 50.000,00</span>
-                        <span class="badge badge-pill badge-info">Rp 100.000,00</span>
+                        <span class="badge badge-pill badge-info" val="10000">Rp 10.000,00</span>
+                        <span class="badge badge-pill badge-info" val="50000">Rp 50.000,00</span>
+                        <span class="badge badge-pill badge-info" val="100000">Rp 100.000,00</span>
                         <span class="badge badge-pill badge-info other">Lain-lain</span>
                     </div>
-                    <p>Anda akan memberi</p>
-                    <input type="amount" class="form-control"> <br>
-                    <button class="btn btn-success btn-raised">Berikan Donasi Sekarang</button>
+                    <br>
+                    <input placeholder="Jumlah yang ingin didonasi" class="price-input" type="number" class="form-control" style="display: none;"> <br>
+                    <br>
+                    <h5 class="price-label"> <strong>Anda akan mendonasi: Rp 0</strong>  </h5>
+                    <p>Pesan Khusus:</p>
+                    <textarea class="donation-message" name="message" id="" cols="30" rows="10" class="form-control">Opsional</textarea> <br><br>
+                    <button class="btn btn-success btn-raised donate-now">Berikan Donasi Sekarang</button>
                 </div>
             </div>
         </div>
@@ -161,17 +165,92 @@
 
 @section('script')
     <script>
+
+        let donation = {
+          amount: '', campaign_id: '', message: ''
+        };
+
+        let target_amount = 0;
+
+        let other = 0;
+
+
         $(".donation .btn.donate").click(function () {
+            const campaign_id = $(this).attr('campaign-id');
+            donation.campaign_id = campaign_id;
+            console.log(campaign_id);
+
+            target_amount = $(this).attr('target-amount');
+
            $(".donation.modal-donate").modal('show');
         });
 
         $(".wishlist .btn.donate").click(function () {
+            const campaign_id = $(this).attr('campaign-id');
+            console.log(campaign_id);
+            donation.campaign_id = campaign_id;
             $(".wishlist.modal-donate").modal('show');
         });
 
         $(".prices .badge-pill").click(function () {
-            $(this).css('')
-        })
+            const price = $(this).text();
+            if (price == "Lain-lain") {
+                $(".price-input").show();
+                $(".price-input").prop("max", target_amount);
+                $(".price-input").attr("class", "form-control price-input");
+                other = 1;
+            } else {
+                const priceVal = $(this).attr('val');
+                console.log(priceVal);
+                donation.amount = priceVal;
+                $(".price-label").html(`<h5 class="price-label"> <strong>Anda akan mendonasi: ${price}</strong>  </h5>`);
+            }
+        });
+
+        $(".price-input").keyup(function () {
+           const amount = $(this).val();
+            $(".price-label").html(`<h5 class="price-label"> <strong>Anda akan mendonasi: Rp ${amount}</strong>  </h5>`);
+        });
+
+
+
+        $(".donate-now").click(function () {
+            if ( (donation.amount == "" && !other) || donation.campaign_id == "") {
+                alert("Mohon untuk mengisi jumlah donasi!");
+                return false;
+            }
+
+            if (other) {
+                const amount = $(".price-input").val();
+                if (amount == "") {
+                    alert("Mohon untuk mengisi jumlah donasi!");
+                    return false;
+                }
+                donation.amount = amount;
+            }
+
+            donation.message = $(".donation-message").val();
+            console.log(donation);
+
+            $.ajax({
+               url: `/contribution`,
+               method: 'POST',
+               data: donation,
+                success: function(data) {
+                   console.log(data);
+
+                   other = 0;
+                   donation.amount = '';
+                   donation.message = '';
+                   donation.campaign_id = '';
+
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert("error")
+                }
+            });
+        });
     </script>
 @endsection
 

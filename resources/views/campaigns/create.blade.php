@@ -48,7 +48,6 @@
             <input type="hidden" id="status" name="status" value="active">
             <input type="hidden" id="users_id" name="custId" value="{{Auth::user()->id}}">
 
-
             <button class="btn btn-default">Cancel</button>
             <button type="submit" class="btn btn-primary btn-raised">Next</button>
             </form>

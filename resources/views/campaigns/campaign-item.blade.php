@@ -11,45 +11,42 @@
     </style>
 @endsection
 
-
 @section('body')
     <div id="body">
         <div class="container">
-            <div class="create-campaign-header">
+            <div class="wishlist-header">
                 <div class="title">
-                    <h1>
-                        Pilih Item
+                    <h1>Pilih produk 
                     </h1>
                 </div>
+                <p>
+                    Pilih produk mitra yang dibutuhkan untuk kampanye donasimu
+                </p>
             </div>
 
-            <form method="get" action= "{{action(CampaignController@create)}}" accept-charset="UTF-8">
-            <div class="form-group">
-                <label for="inputTitle" class="bmd-label-floating">Judul</label>
-                <input class="form-control" id="inputTitle">
-                <span class="bmd-help">Isi dengan judul kampanye donasimu</span>
+            <div class="row">
+                @foreach($items as $item)
+                <div class="col-md-3">
+                    <div class="card item h-100 mb-2">
+                        <img src="{{$item->image_path}}" alt="" height="200px">
+                        <div class="card-header campaign-title">
+                            <a href="{{$item->item_url}}" target="_blank">
+                            <h5>
+                                <strong>
+                                    {{$item->title}}
+                                </strong>
+                            </h5>
+                            </a>
+                            <form action="">
+                                <input type="number" value=1>
+                                <button type="submit" class="btn">+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
-            <div class="form-group">
-                <label for="inputDescription" class="bmd-label-floating">Deskripsi</label>
-                <textarea class="form-control" id="inputDescription" rows="3"></textarea>
-                <span class="bmd-help">Jelaska lebih lanjut mengenai kegiatan donasimu seperti tujuan, target, lokasi kegiatan, dan sebagainya</span>
-            </div>
-            <div class="form-group">
-                <label for="inputDeadline" class="bmd-label-floating">Batas waktu</label>
-                <input class="form-control" id="inputDeadline" onfocus="(this.type='date')" onfocusout="(this.type='text')">
-                <span class="bmd-help">Isi dengan batas terakhir waktu penerimaan donasi</span>
-            </div>
-            <div class="form-group">
-                <label for="inputBannerImage" class="bmd-label-floating">Gambar</label>
-                <input class="form-control" id="inputBannerImage">
-                <span class="bmd-help">isi dengan url gambar yang sesuai dengan jenis kegiatan donasimu</span>
-            </div>
-
-            <button class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-primary btn-raised">Next</button>
-            </form>
         </div>
     </div>
-            
-@endsection
 
+@endsection

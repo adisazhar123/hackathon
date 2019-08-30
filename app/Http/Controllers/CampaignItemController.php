@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 
 use App\Campaign;
 use App\CampaignItem;
+use App\Item;
 
 use Auth;
 
 class CampaignItemController extends BaseController
 {
+    public function index(){
+        $items = Item::all();
+        
+        return view('campaigns.campaign-item', ['items' => $items]);
+    }
+
     public function create(Request $request){
         $user_id = 1;
         $campaign_items = $request->input('campaign_items');

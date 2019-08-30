@@ -17,7 +17,7 @@ class CampaignController extends BaseController
 {
     public function __construct()
     {
-        view()->share('title', 'Patungan Kuy');
+        view()->share('title', 'Buat Donasi');
     }
 
     public function index()
@@ -37,7 +37,6 @@ class CampaignController extends BaseController
             'fulfillment_percentage' => 0,
             'shortlink' => $request->input('shortlink'),
             'campaign_type' => $request->input('campaign_type'),
-            'target_amount' => $request->input('target_amount'),
             'status' => $request->input('status'),
             'users_id' => $user_id
         ]);
@@ -51,15 +50,19 @@ class CampaignController extends BaseController
                     'description' => $item['description'],
                     'campaigns_id' => $campaign->id,
                     'items_id' => $item['item_id'],
-                    'quantity' => $item['quantity']
+                    'quantity' => 1
                 ]);
                 array_push($list_of_campaign_array, $campaign_item);
             }
         }
 
-        return response()->json([
-            $campaign
-        ], 200);
+        session([
+            'campaign' => $campaign
+        ]);
+
+        var_dump($request->session()->get('deadline'));
+        return redirect('../campaign_item/create');
+
     }
 
     public function getCampaignByType($campaign_type){

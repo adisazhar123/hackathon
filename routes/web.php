@@ -30,10 +30,17 @@ Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContri
 Route::get('/campaign/campaigner/{id}', 'CampaignController@getCampaignByCampaignerId');
 Route::post('/campaign/update/', 'CampaignController@update');
 Route::post('/campaign_item','CampaignItemController@create');
-Route::get('/campaign_item', 'CampaignItemController@getCampaignItems');
+Route::get('/campaign_item/create', 'CampaignItemController@index');
 
 // Route::post('/payment/contribution', 'ContributionController@store');
 // middleware('auth')->
 Route::post('/payment/contribution', 'ContributionController@store');
 Route::get('/profile', 'ProfilesController@index');
 
+
+// Route::post('/payment/contribution', 'ContributionController@store');
+// middleware('auth')->
+Route::resource('/contribution', 'ContributionController');
+Route::resource('/profile', 'ProfilesController');
+Route::post('/campaign_item','CampaignItemController@create');
+Route::get('/campaign_item', 'CampaignItemController@getCampaignItems');
