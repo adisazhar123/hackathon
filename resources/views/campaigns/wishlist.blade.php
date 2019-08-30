@@ -199,14 +199,18 @@
 @section('body')
     <div id="body">
         <div class="container">
-            <div class="wishlist-header">
-                <div class="title">
-                    <h1>Wishlist: {{$wishlist->title}}
-                    </h1>
-                </div>
-            </div>
+
 
             <div class="card mb-2">
+
+                <div class="card-header">
+                    <div class="wishlist-header">
+                        <div class="title">
+                            <h1>Wishlist: {{$wishlist->title}}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
 
                 @if($wishlist->fulfillment_percentage == 100.00)
                 <div class="alert alert-success">
