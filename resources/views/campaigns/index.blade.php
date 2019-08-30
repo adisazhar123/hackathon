@@ -66,7 +66,10 @@
                                             <span class="badge badge-pill badge-primary">Category X</span><br>
                                         </div>
                                         <div class="progress">
-                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                            @php
+                                                $percentage_value = $donation->fulfillment_percentage * 100;
+                                            @endphp
+                                            <div data-toggle="tooltip" data-placement="top" title="{{$percentage_value}}%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percentage_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_value}}%"></div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -109,7 +112,10 @@
                                             <span class="badge badge-pill badge-primary">Category X</span><br>
                                         </div>
                                         <div class="progress">
-                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                            @php
+                                                $percentage_value = $donation->fulfillment_percentage * 100;
+                                            @endphp
+                                            <div data-toggle="tooltip" data-placement="top" title="{{$percentage_value}}%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percentage_value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$percentage_value}}%"></div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
