@@ -29,6 +29,15 @@
         .prices:hover {
             cursor: pointer;
         }
+
+        .badge-buy {
+            margin-left: 30px;
+        }
+        
+        .badge-buy:hover {
+            cursor: pointer;
+            background-color: #ff5719;
+        }
     </style>
 @endsection
 
@@ -65,6 +74,12 @@
                                             <span class="badge badge-pill badge-warning">Bantuan Sosial</span>
                                             <span class="badge badge-pill badge-primary">Category X</span><br>
                                         </div>
+                                        <span>
+                                        <strong>
+                                                Rp {{ number_format($donation->contributors->sum('amount'), 2, ',', '.') }}
+                                            </strong>
+                                            terkumpul dari Rp {{ number_format($donation->target_amount, 2, ',' , '.') }}
+                                        </span>
                                         <div class="progress">
                                             <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                                         </div>
@@ -108,12 +123,12 @@
                                             <span class="badge badge-pill badge-success">Wishlist</span>
                                             <span class="badge badge-pill badge-primary">Category X</span><br>
                                         </div>
-                                        <div class="progress">
-                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                                        </div>
+{{--                                        <div class="progress">--}}
+{{--                                            <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-info btn-raised donate" campaign-id="{{$wishlist->id}}">Lihat Lebih Lanjut</button>
+                                        <button class="btn btn-info btn-raised donate" campaign-id="{{$wishlist->id}}">Lihat Barangku</button>
                                     </div>
                                 </div>
                             </div>
@@ -151,12 +166,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h4>Wishlist Ku</h4>
-                   <ul>
+                    <ul class="wishlist-list">
                        <li>lorem</li>
                        <li>lorem</li>
                        <li>lorem</li>
                        <li>lorem</li>
                    </ul>
+                    <div class="more-info"></div>
                 </div>
             </div>
         </div>
@@ -174,6 +190,10 @@
 
         let other = 0;
 
+        let wishlist = {
+          campaign_id: '', message: '',
+          campaign_item_id: ''
+        };
 
         $(".donation .btn.donate").click(function () {
             const campaign_id = $(this).attr('campaign-id');
@@ -189,7 +209,34 @@
             const campaign_id = $(this).attr('campaign-id');
             console.log(campaign_id);
             donation.campaign_id = campaign_id;
-            $(".wishlist.modal-donate").modal('show');
+
+
+
+            $.ajax({
+               url: `/campaigns/${campaign_id}`,
+               success: function(data) {
+
+                    const { items } = data;
+
+                    console.log(items);
+
+                    items.map((campaignItem) => {
+                        $(".wishlist.modal-donate .wishlist-list").html(
+                            `
+                            <li>
+                               <a target="_blank" href="${campaignItem.item.item_url}">${campaignItem.item.title}</a><br>
+                                <small>Rp ${campaignItem.item.price}</small>
+                            </li>
+                            `
+                        )
+                    });
+                   $(".wishlist.modal-donate .modal-body .more-info").html(`
+                    <a href='/wishlists/${data.id}' class='btn btn-primary btn-raised'> Lihat Selengkapnya </a>
+                   `);
+                    $(".wishlist.modal-donate").modal('show');
+                }
+            });
+
         });
 
         $(".prices .badge-pill").click(function () {
@@ -222,7 +269,7 @@
 
             if (other) {
                 const amount = $(".price-input").val();
-                if (amount == "") {
+                if (amount == "" || parseInt(amount) <= 0) {
                     alert("Mohon untuk mengisi jumlah donasi!");
                     return false;
                 }

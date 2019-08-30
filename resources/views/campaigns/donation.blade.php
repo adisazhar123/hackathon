@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="progress mb-3">
-                        <div data-toggle="tooltip" data-placement="top" title="75%" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                        <div data-toggle="tooltip" data-placement="top" title="{{$donation->fulfillment_percentage . "%"}}" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$donation->fulfillment_percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{$donation->fulfillment_percentage . "%"}}"></div>
                     </div>
 
                     <div class="progress-info">
@@ -47,7 +47,9 @@
                     </div>
                     <br><br>
                     <div class="donate-now-btn">
-                        <button class="btn btn-success btn-raised donate" target-amount="{{$donation->target_amount}}" campaign-id="{{$donation->id}}">Donasi Sekarang</button>
+                        @if($donation->fulfillment_percentage < 100.00)
+                            <button class="btn btn-success btn-raised donate" target-amount="{{$donation->target_amount}}" campaign-id="{{$donation->id}}">Donasi Sekarang</button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -145,6 +147,7 @@
             if (price == "Lain-lain") {
                 $(".price-input").show();
                 $(".price-input").prop("max", target_amount);
+                $(".price-input").prop("min", 1);
                 $(".price-input").attr("class", "form-control price-input");
                 other = 1;
             } else {
@@ -170,7 +173,7 @@
 
             if (other) {
                 const amount = $(".price-input").val();
-                if (amount == "") {
+                if (amount == "" || parseInt(amount) <= 0) {
                     alert("Mohon untuk mengisi jumlah donasi!");
                     return false;
                 }
@@ -192,6 +195,14 @@
                     donation.message = '';
                     donation.campaign_id = '';
 
+                    $(".donation.modal-donate").modal('hide');
+
+                    swal("Hebat!", 'Terima kasih sudah melakukan donasi', "success");
+
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+
                 },
                 error: function (data) {
                     console.log(data);
@@ -199,5 +210,6 @@
                 }
             });
         });
+
     </script>
 @endsection

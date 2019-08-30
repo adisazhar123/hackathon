@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
+use App\Contribution;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -42,6 +43,19 @@ class CampaignsController extends Controller
             ->items()
             ->first();
 
-        return view('campaigns.wishlist', ['wishlist' => $wishlist]);
+        $totalPrice = 0;
+        foreach ($wishlist->items as $campaignItem)
+        {
+            $totalPrice += $campaignItem->item->price;
+        }
+
+        $contributors = Contribution::where('campaigns_id', $id)->get();
+
+        foreach($contributors as $c)
+        {
+            $totalPrice -= $c->amount;
+        }
+
+        return view('campaigns.wishlist', ['wishlist' => $wishlist, 'totalPrice' => $totalPrice]);
     }
 }

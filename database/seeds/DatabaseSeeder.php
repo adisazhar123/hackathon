@@ -81,46 +81,46 @@ class DatabaseSeeder extends Seeder
             $cId++;
         }
 
-        for ($i = 0; $i < 7; $i++)
+        for ($i = 1; $i < 7; $i++)
         {
             \App\CampaignItem::create([
                 'description' => $faker->text,
                 'quantity' => $faker->numberBetween(1, 100),
                 'campaign_id' => 1,
-                'item_id' => random_int(1, 10),
+                'item_id' => $i,
                 'percentage' => 0
             ]);
         }
 
-        for ($i = 0; $i < 7; $i++)
+        for ($i = 1; $i < 7; $i++)
         {
             \App\CampaignItem::create([
                 'description' => $faker->text,
                 'quantity' => $faker->numberBetween(1, 100),
                 'campaign_id' => 2,
-                'item_id' => random_int(1, 10),
+                'item_id' => $i,
                 'percentage' => 0
             ]);
         }
 
-        for ($i = 0; $i < 4; $i++)
+        for ($i = 1; $i <= 4; $i++)
         {
             \App\CampaignItem::create([
                 'description' => $faker->text,
                 'quantity' => $faker->numberBetween(1, 100),
                 'campaign_id' => 3,
-                'item_id' => random_int(1, 10),
+                'item_id' => $i,
                 'percentage' => 0
             ]);
         }
 
-        for ($i = 0; $i < 7; $i++)
+        for ($i = 1; $i <= 7; $i++)
         {
             \App\CampaignItem::create([
                 'description' => $faker->text,
                 'quantity' => $faker->numberBetween(1, 100),
                 'campaign_id' => 4,
-                'item_id' => random_int(1, 10),
+                'item_id' => $i,
                 'percentage' => 0
             ]);
         }
