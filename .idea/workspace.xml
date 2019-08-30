@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="332279b6-ffdb-4114-84f6-38d83e55b675" name="Default Changelist" comment="am">
-      <change beforePath="$PROJECT_DIR$/app/CampaignItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CampaignItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CampaignController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampaignController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CampaignsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampaignsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContributionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContributionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campaigns/donation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campaigns/donation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campaigns/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campaigns/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campaigns/wishlist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campaigns/wishlist.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="332279b6-ffdb-4114-84f6-38d83e55b675" name="Default Changelist" comment="am" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/campaigns/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="78" column="78" selection-start-line="78" selection-start-column="78" selection-end-line="78" selection-end-column="78" />
+            <state relative-caret-position="447">
+              <caret line="71" column="44" lean-forward="true" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -390,12 +379,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567144905958</updated>
-      <workItem from="1567144910121" duration="32940000" />
+      <workItem from="1567144910121" duration="33649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32940000" />
+    <option name="totallyTimeSpent" value="33649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,7 +397,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1052" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
@@ -417,7 +405,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" sideWeight="0.49946752" weight="0.32832617" />
+      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49946752" visible="true" weight="0.32832617" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.5005325" side_tool="true" weight="0.32832617" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -657,8 +645,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/campaigns/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="78" column="78" selection-start-line="78" selection-start-column="78" selection-end-line="78" selection-end-column="78" />
+        <state relative-caret-position="447">
+          <caret line="71" column="44" lean-forward="true" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
         </state>
       </provider>
     </entry>
