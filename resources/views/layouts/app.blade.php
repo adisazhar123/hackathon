@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
 
-                <a class="navbar-brand" href="/">{{empty($title) ? 'Profilku' : $title}}</a>
+                <a class="navbar-brand" href="/">{{empty($title) ? 'Patungan Kuy' : $title}}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,7 +51,10 @@
                         </li>
                         @endif
                         <li class="nav-item active">
-                            <a class="nav-link" href="/campaign/create">Buat Donasi <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/campaign/donation/create">Buat Donasi <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/campaign/wishlist/create">Buat Wishlist <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
 
@@ -89,6 +92,7 @@
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.js" integrity="sha256-sYWcd3DUTwi95ed6dby2m5aBnOhO+tgc1jr4Gl5n5Zg=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             $(document).ready(function() { $('body').bootstrapMaterialDesign();
             });

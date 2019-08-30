@@ -57,12 +57,16 @@ class CampaignItemController extends BaseController
     public function addItemToCampaign(Request $request, $campaignId, $itemId)
     {
         $ci = CampaignItem::create([
-            'description' => 'dummy',
+            'description' => $request->message,
             'quantity' => 1,
             'campaign_id' => $campaignId,
             'item_id' => $itemId,
             'percentage' => 0
         ]);
+
+        $campaign = Campaign::find($campaignId);
+        $campaign->target_amount = $campaign->target_amount + $ci->item->price;
+        $campaign->save();
 
         return response()->json($ci);
     }
@@ -70,6 +74,6 @@ class CampaignItemController extends BaseController
     public function finishAddingItemToCampaign($type)
     {
         session()->forget("campaign");
-        return redirect("/")->with('success', 'Succesfully created ' . $type);
+        return redirect("/")->with('success', 'Berhasil membuat ' . $type);
     }
 }

@@ -15,15 +15,12 @@
 @section('body')
     <div id="body">
         <div class="container">
-            <div class="create-campaign-header">
-                <div class="title">
+            <div class="card">
+                <div class="card-header">
                     <h1>
-                        <i class="fa fa-bullhorn" aria-hidden="true"></i> Buat {{ ucfirst($type) }}
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i> Buat {{ $type == 'donation' ? 'Donasi' :ucfirst($type) }}
                     </h1>
                 </div>
-            </div>
-
-            <div class="card">
                 <div class="card-body">
                     <form method= "post" action= "/create_campaign" accept-charset="UTF-8">
                         <div class="form-group">

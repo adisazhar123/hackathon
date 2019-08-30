@@ -15,18 +15,21 @@
 @section('body')
     <div id="body">
         <div class="container">
-            <div class="wishlist-header">
-                <div class="title">
-                    <h1>
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pilih Produk
-                    </h1>
-                </div>
-                <p>
-                    {{$label}}
-                </p>
-            </div>
+
 
             <div class="card">
+                <div class="card-header">
+                    <div class="wishlist-header">
+                        <div class="title">
+                            <h1>
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i> Pilih Produk
+                            </h1>
+                        </div>
+                        <p>
+                            {{$label}}
+                        </p>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         @foreach($items as $item)
@@ -41,6 +44,9 @@
                                                 </strong>
                                             </h5>
                                         </a>
+
+                                        <textarea name="" id="" cols="30" rows="10"
+                                                  class="form-control message_{{$item->id}}"></textarea>
 
                                         <button class="btn btn-primary btn-raised add-item" item-id="{{$item->id}}" campaign-id="{{session()->get('campaign')->id}}" >
                                             <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -57,7 +63,7 @@
 
             <div class="card">
                 <div class="card-body">
-                <form action="/campaign/finish" method="post">
+                <form action="/campaign/finish/{{$type}}" method="post">
                     <button class="btn btn-success btn-raised">Selesai</button>
                     <br>
                     <small class="text-muted">Klik Selesai jika produk {{$type}} mu sudah komplit.</small>
@@ -79,6 +85,7 @@
            $.ajax({
                 url: `/campaign/${campaign_id}/item/${item_id}`,
                 method: 'post',
+               data: {message: $(".message_" + item_id ).val()},
                success:function (data) {
                     $(`.add-item[item-id=${item_id}]`).html(`<i class="fa fa-heart" aria-hidden="true"></i>`);
                    alertify.success('Item successfully added');

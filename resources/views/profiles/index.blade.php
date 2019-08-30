@@ -71,7 +71,7 @@
                                                 <tr class="wishlist-row mr-2">
                                                     <td class="align-middle"><i style="margin-right: 20px" class="fa fa-gratipay wish-icon" aria-hidden="true"></i></td>
                                                     <td>
-                                                        <a href="#">{{$wish->title}}</a>
+                                                        <a href="/wishlists/{{$wish->id}}">{{$wish->title}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -92,7 +92,7 @@
                                                 <tr class="donation-row mr-2">
                                                     <td class="align-middle"><i style="margin-right: 20px" class="fa fa-medkit donation-icon" aria-hidden="true"></i></td>
                                                     <td>
-                                                        <a href="#">{{$donation->title}}</a>
+                                                        <a href="/donations/{{$donation->id}}">{{$donation->title}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

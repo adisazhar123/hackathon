@@ -29,12 +29,15 @@ Route::get('/campaigns/type/{campaign_type}', 'CampaignController@getCampaignByT
 //Route::get('/wishlist/create','CampaignController@create_wishlist_page');
 //Route::get('/campaign/create','CampaignController@create_campaign_page');
 Route::get('/campaign/type/{campaign_type}', 'CampaignController@getCampaignByType');
-Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
+Route::get('/campaigns/{id}', 'CampaignController@getCampaignById');
 Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContributorId');
 Route::get('/campaign/campaigner/{id}', 'CampaignController@getCampaignByCampaignerId');
 Route::post('/campaign/update/', 'CampaignController@update');
 Route::post('/campaign_item','CampaignItemController@create');
 Route::get('/campaign_item/create', 'CampaignItemController@index');
+
+Route::post('/campaigns/buy/all', 'ContributionController@buyAllWishlistItems');
+Route::post('/campaigns/buy/single', 'ContributionController@buySingleWishlistItem');
 
 // Route::post('/payment/contribution', 'ContributionController@store');
 // middleware('auth')->
@@ -50,4 +53,6 @@ Route::post('/campaign_item','CampaignItemController@create');
 Route::get('/campaign_item', 'CampaignItemController@getCampaignItems');
 
 Route::post('campaign/{campaignId}/item/{itemId}', 'CampaignItemController@addItemToCampaign');
-Route::post('/campaign/finish', 'CampaignItemController@finishAddingItemToCampaign');
+Route::post('/campaign/finish/{type}', 'CampaignItemController@finishAddingItemToCampaign');
+
+Route::get('/contributors/{id}/message', 'ContributionController@getMessage');

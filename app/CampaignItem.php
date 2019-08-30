@@ -26,6 +26,6 @@ class CampaignItem extends Model
 
     public function contributors()
     {
-        return $this->hasMany(Contribution::class);
+        return $this->hasMany(Contribution::class, 'campaign_item_id', 'id');
     }
 }

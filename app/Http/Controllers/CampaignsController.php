@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
+use App\Contribution;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 
@@ -33,10 +34,13 @@ class CampaignsController extends Controller
             ->donation()
             ->items()
             ->first();
-        
+
+        $contributors = Contribution::where('campaigns_id', $id)->get();
+
+
         $url = url()->current();
     
-        return view('campaigns.donation', ['donation' => $donation, 'url' => $url]);
+        return view('campaigns.donation', ['donation' => $donation, 'url' => $url, 'messages' => $contributors]);
     }
 
     public function showWishlist($id)
@@ -48,6 +52,21 @@ class CampaignsController extends Controller
         
         $url = url()->current();
 
-        return view('campaigns.wishlist', ['wishlist' => $wishlist, 'url' => $url]);
+        $totalPrice = 0;
+        foreach ($wishlist->items as $campaignItem)
+        {
+            $totalPrice += $campaignItem->item->price;
+        }
+
+        $contributors = Contribution::where('campaigns_id', $id)->get();
+
+        foreach($contributors as $c)
+        {
+            $totalPrice -= $c->amount;
+        }
+
+        $messages = $contributors;
+
+        return view('campaigns.wishlist', ['wishlist' => $wishlist, 'totalPrice' => $totalPrice, 'url' => $url, 'messages' => $messages]);
     }
 }
