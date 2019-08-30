@@ -31,6 +31,21 @@ class CampaignController extends BaseController
             'status' => $request->input('status'),
             'users_id' => $user_id
         ]);
+        
+        $campaign_items = $request->input('campaign_items');
+
+        if ($request->filled('campaign_items')){
+            $list_of_campaign_array = [];
+            foreach ($campaign_items as $item){
+                $campaign_item = CampaignItem::create([
+                    'description' => $item['description'],
+                    'campaigns_id' => $campaign->id,
+                    'items_id' => $item['item_id'],
+                    'quantity' => $item['quantity']
+                ]);
+                array_push($list_of_campaign_array, $campaign_item);
+            }
+        }
 
         return response()->json([
             $campaign
@@ -94,6 +109,4 @@ class CampaignController extends BaseController
             $campaign
         ]);
     }
-
-
 }

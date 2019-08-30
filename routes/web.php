@@ -21,3 +21,5 @@ Route::get('/campaign/{id}', 'CampaignController@getCampaignById');
 Route::get('/campaign/contributor/{id}', 'CampaignController@getCampaignByContributorId');
 Route::get('/campaign/campaigner/{id}', 'CampaignController@getCampaignByCampaignerId');
 Route::post('/campaign/update/', 'CampaignController@update');
+Route::post('/campaign_item','CampaignItemController@create');
+Route::get('/campaign_item', 'CampaignItemController@getCampaignItems');
